@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6673FFB-0C91-416F-8EB6-EE3FFD94A052}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataTool</RootNamespace>
+    <AssemblyName>DataTool</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>rd /s/q $(OutDir)ScriptEditor\DataTool
+md $(OutDir)ScriptEditor\DataTool
+md $(OutDir)ScriptEditor\DataTool\DefaultConfig
+xcopy DefaultConfig ScriptEditor\DataTool\DefaultConfig
+xcopy DataTool.exe ScriptEditor\DataTool
+xcopy DataToolInterface.dll ScriptEditor\DataTool
+xcopy DataToolLog.dll ScriptEditor\DataTool
+xcopy DefaultConfig.dll ScriptEditor\DataTool
+xcopy Microsoft.Office.Interop.Excel.dll ScriptEditor\DataTool
+xcopy stdole.dll ScriptEditor\DataTool</PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DefaultConfig">
+      <HintPath>DefaultConfig\DefaultConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auxiliary\ExtentMethods.cs" />
+    <Compile Include="CaseTest\CaseTester.cs" />
+    <Compile Include="CodeGenerate\Auxiliary\Attributes.cs" />
+    <Compile Include="CodeGenerate\Auxiliary\ExtensionMethods.cs" />
+    <Compile Include="CodeGenerate\Auxiliary\CommandLineHelper.cs" />
+    <Compile Include="CodeGenerate\Auxiliary\Enums.cs" />
+    <Compile Include="CodeGenerate\CodeGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\Auxiliary\ConfigGeneratorBase.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\ConfigGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\GlobalGenerate\GlobalGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\InputGenerate\InputFileGenerate\InputFileGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\InputGenerate\InputGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\InputGenerate\InputPathGenerate\InputPathGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\ModelGenerate\ModelGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\OutputGenerate\OutputFileGenerate\OutputFileGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\OutputGenerate\OutputGenerator.cs" />
+    <Compile Include="CodeGenerate\ConfigGenerate\OutputGenerate\OutputPathGenerate\OutputPathGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\BinaryGenerate\BinaryGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\BinaryGenerate\ContentGenerate\ContentGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\CSharpGenerate\CSharpGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\ExcelGenerate\ContentGenerate\ContentGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\ExcelGenerate\DefaultGenerate\DefaultGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\ExcelGenerate\ExcelGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\ExcelGenerate\SheetGenerate\SheetGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\FileGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\IniGenerate\IniGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\IniGenerate\SectionGenerate\SectionGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\LuaGenerate\LuaGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\XmlGenerate\AttributeGenerate\AttributeGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\XmlGenerate\ContentGenerate\ContentGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\XmlGenerate\DefaultGenerate\DefaultGenerator.cs" />
+    <Compile Include="CodeGenerate\FileGenerate\XmlGenerate\XmlGenerator.cs" />
+    <Compile Include="ConsistencyCheck\ConsistencyChecker.cs" />
+    <Compile Include="DataToolFile.cs" />
+    <Compile Include="FormatAccess\Auxiliary\ExtensionMethods.cs" />
+    <Compile Include="FormatAccess\Auxiliary\FormatAccessAttribute.cs" />
+    <Compile Include="FormatAccess\BinaryAccess\Auxiliary\ExtentMethod.cs" />
+    <Compile Include="FormatAccess\BinaryAccess\BinaryRead\BinaryReader.cs" />
+    <Compile Include="FormatAccess\BinaryAccess\BinaryWrite\BinaryWriter.cs" />
+    <Compile Include="FormatAccess\CSharpAccess\CSharpRead\CSharpReader.cs" />
+    <Compile Include="FormatAccess\CSharpAccess\CSharpWrite\CSharpWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\Auxiliary\ExcelHelper.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ExcelReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\Auxiliary\Classes.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\Auxiliary\ExtensionMethods.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\Auxiliary\KeyInfo.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\Auxiliary\StaticMethods.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\AdvancedMultipleRead\AdvancedMultipleReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\AdvancedSingleRead\AdvancedSingleReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\BasicMultipleRead\BasicMultipleReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\BasicSingleRead\BasicSingleReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\ContentRead\ContentReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelRead\SheetRead\SheetReader.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetContentWrite\ContentAdvancedMultipleWrite\ContentAdvancedMultipleWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetContentWrite\ContentAdvancedSingleWrite\ContentAdvancedSingleWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetContentWrite\ContentBasicMultipleWrite\ContentBasicMultipleWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetContentWrite\ContentBasicSingleWrite\ContentBasicSingleWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetContentWrite\ExcelSheetContentWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetWrite\ExcelSheetDefaultWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelSheetWrite\ExcelSheetWriter.cs" />
+    <Compile Include="FormatAccess\ExcelAccess\ExcelWrite\ExcelWriter.cs" />
+    <Compile Include="FormatAccess\FormatReader.cs" />
+    <Compile Include="FormatAccess\FormatWriter.cs" />
+    <Compile Include="FormatAccess\IniAccess\Auxiliary\IniAccessor.cs" />
+    <Compile Include="FormatAccess\IniAccess\IniRead\IniReader.cs" />
+    <Compile Include="FormatAccess\IniAccess\IniWrite\IniWriter.cs" />
+    <Compile Include="FormatAccess\LuaAccess\LuaRead\LuaReader.cs" />
+    <Compile Include="FormatAccess\LuaAccess\LuaWrite\LuaWriter.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlRead\AttributeRead\AttributeReader.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlRead\Auxiliary\XmlReaderBase.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlRead\ContentRead\ContentReader.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlRead\DefaultRead\DefaultReader.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlRead\XmlReader.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlWrite\AttributeWrite\AttributeWriter.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlWrite\Auxiliary\XmlWriterBase.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlWrite\ContentWrite\ContentWriter.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlWrite\DefaultWrite\DefaultWriter.cs" />
+    <Compile Include="FormatAccess\XmlAccess\XmlWrite\XmlWriter.cs" />
+    <Compile Include="InputRead\InputFileRead\InputFileReader.cs" />
+    <Compile Include="InputRead\InputPathRead\InputPathReader.cs" />
+    <Compile Include="InputRead\InputReader.cs" />
+    <Compile Include="InputWrite\InputFileWrite\InputFileWriter.cs" />
+    <Compile Include="InputWrite\InputPathWrite\InputPathWriter.cs" />
+    <Compile Include="InputWrite\InputWriter.cs" />
+    <Compile Include="OutputGenerate\OutputGenerator.cs" />
+    <Compile Include="OutputRead\OutputReader.cs" />
+    <Compile Include="OutputRead\OutputFileRead\OutputFileReader.cs" />
+    <Compile Include="OutputRead\OutputPathRead\OutputPathReader.cs" />
+    <Compile Include="OutputWrite\OutputFileWrite\OutputFileWriter.cs" />
+    <Compile Include="OutputWrite\OutputPathWrite\OutputPathWriter.cs" />
+    <Compile Include="OutputWrite\OutputWriter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="DefaultConfig\DefaultConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ScriptEditor\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ScriptEditor\ScriptEditor.sln">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataToolInterface\DataToolInterface.csproj">
+      <Project>{79370443-d51d-4615-b536-f5318259650f}</Project>
+      <Name>DataToolInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataToolLog\DataToolLog.csproj">
+      <Project>{f6634baf-eb3f-409a-9d1d-8ef3772d0a3b}</Project>
+      <Name>DataToolLog</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Auxiliary\" />
+    <Folder Include="FormatAccess\CSharpAccess\Auxiliary" />
+    <Folder Include="FormatAccess\LuaAccess\Auxiliary" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ScriptEditor\ScriptEditor.csproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ScriptEditor\ScriptEditor.csproj.user">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DefaultConfig\TestCase.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ScriptEditor\.run\Generate.run.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ScriptEditor\.run\TestCase.run.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+</Project>

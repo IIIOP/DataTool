@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTool", "DataTool\DataTool.csproj", "{E6673FFB-0C91-416F-8EB6-EE3FFD94A052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataToolInterface", "DataToolInterface\DataToolInterface.csproj", "{79370443-D51D-4615-B536-F5318259650F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataToolLog", "DataToolLog\DataToolLog.csproj", "{F6634BAF-EB3F-409A-9D1D-8EF3772D0A3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataToolGUI", "DataToolGUI\DataToolGUI.csproj", "{70F18A65-A69D-4DDD-A822-287B07C47C55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6673FFB-0C91-416F-8EB6-EE3FFD94A052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6673FFB-0C91-416F-8EB6-EE3FFD94A052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6673FFB-0C91-416F-8EB6-EE3FFD94A052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6673FFB-0C91-416F-8EB6-EE3FFD94A052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79370443-D51D-4615-B536-F5318259650F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79370443-D51D-4615-B536-F5318259650F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79370443-D51D-4615-B536-F5318259650F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79370443-D51D-4615-B536-F5318259650F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6634BAF-EB3F-409A-9D1D-8EF3772D0A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6634BAF-EB3F-409A-9D1D-8EF3772D0A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6634BAF-EB3F-409A-9D1D-8EF3772D0A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6634BAF-EB3F-409A-9D1D-8EF3772D0A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F18A65-A69D-4DDD-A822-287B07C47C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F18A65-A69D-4DDD-A822-287B07C47C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F18A65-A69D-4DDD-A822-287B07C47C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F18A65-A69D-4DDD-A822-287B07C47C55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(RiderSharedRunConfigurations) = postSolution
+		File = DataTool\ScriptEditor\.run\Generate.run.xml
+		File = DataTool\ScriptEditor\.run\TestCase.run.xml
+	EndGlobalSection
+EndGlobal

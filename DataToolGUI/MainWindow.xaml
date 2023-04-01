@@ -1,0 +1,165 @@
+﻿<Window x:Class="DataTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataTool"
+        mc:Ignorable="d" Height="660" Width="1180" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        Background="Transparent" WindowStyle="None" AllowDrop="True" DragEnter="MainWindow_OnDragEnter" Drop="MainWindow_OnDrop" ResizeMode="CanResizeWithGrip" >
+    <Grid>
+        <!--Background grid-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border  CornerRadius="25 0 0 25" MouseMove="MainWindow_OnMouseMove">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#343155" Offset="0"/>
+                        <GradientStop Color="#3B2E58" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border CornerRadius="0 25 25 0" Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#3E3A65" Offset="0"/>
+                        <GradientStop Color="#473765" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Grid>
+        
+        <!--Controls-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--main menu-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" MinWidth="100">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MouseDown="UIElement_OnMouseDown">
+                        <TextBlock Foreground="#ff00ff" FontSize="20" Opacity="0.6" >DataTool</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden">
+                    <ListBox Name="list" HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0" Foreground="Gray" SelectionChanged="List_OnSelectionChanged">
+                        <ListBox.ItemContainerStyle>
+                            <Style>
+                                <Style.Triggers>
+                                    <Trigger Property="ListBoxItem.IsSelected" Value="True">
+                                        <Setter Property="ListBoxItem.Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="2" Background="Transparent">
+                                    <Border Margin="1" Padding="5" BorderThickness="0.1" BorderBrush="AliceBlue" CornerRadius="5">
+                                        <Grid Margin="3">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Path=name}"/>
+                                            <TextBlock Grid.Row="1" FontSize="10" Text="{Binding Path=project}"/>
+                                            <TextBlock Grid.Row="2" FontSize="10" Text="{Binding Path=version}"/>
+                                            <TextBlock Grid.Row="3" FontSize="10" Text="{Binding Path=author}"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBlock Visibility="Collapsed" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Foreground="Gray">请拖入DataTool文件</TextBlock>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Padding="5" BorderBrush="Gray" BorderThickness="0.1" Margin="10">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="10">
+                                <Button Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Margin="5" Click="Confirm_OnClick">确认
+                                </Button>
+                                <Button Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Margin="5" Click="AllGenerate_OnClick">生成输出
+                                </Button>
+                                <Button Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Margin="5" Click="AllTest_OnClick">执行测试
+                                </Button>
+                                <Button Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Margin="5" Click="Serialize_OnClick">序列化
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Name="ArgStackPanel">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Foreground="Azure" >Input Path:
+                                    </Label>
+                                    <TextBox Width="700" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Foreground="Azure">Output Path:
+                                    </Label>
+                                    <TextBox Width="700" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid  Grid.Row="1"  Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Name="Button_ReadInput" Grid.Row="0" Grid.Column="0"  Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Click="ReadInput_OnClick">
+                            Read Input
+                        </Button>
+                        <Button Name="Button_WriteInput" Grid.Row="1" Grid.Column="0" Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua"  Click="WriteInput_OnClick">
+                            Write Input
+                        </Button>
+                        <Button Name="Button_ReadOutput" Grid.Row="2" Grid.Column="0" Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Click="ReadOutput_OnClick">
+                            Read Output
+                        </Button>
+                        <Button Name="Button_WriteOutput" Grid.Row="3" Grid.Column="0" Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Click="WriteOutput_OnClick">
+                            Write Output
+                        </Button>
+                        <Button Name="Button_ConsistencyCheck" Grid.Row="4" Grid.Column="0" Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Click="ConsistencyCheck_OnClick">
+                            Consistency Check
+                        </Button>
+                        <Button Name="Button_OutputGenerate" Grid.Row="5" Grid.Column="0" Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Click="OutputGenerate_OnClick">
+                            Output Generate
+                        </Button>
+                        <Button Name="Button_CaseTest" Grid.Row="6" Grid.Column="0" Background="Transparent" FontSize="20" Foreground="LightYellow" BorderBrush="Aqua" Click="CaseTest_OnClick">
+                            Case Test
+                        </Button>
+                        <RichTextBox Name="RichTextBox" Grid.Row="0" Grid.Column="1" Grid.RowSpan="7" Background="Transparent" Foreground="Wheat" Margin="10" BorderBrush="Azure" VerticalScrollBarVisibility="Auto">
+
+                        </RichTextBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

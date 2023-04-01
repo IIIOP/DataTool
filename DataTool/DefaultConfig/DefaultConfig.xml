@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model>
+    <Struct>
+        <Excel_TestCase format="Excel" subFormat="Excel" template="TestCase.xlsx">
+            <Sheet_TestCase type="Single" name="TestCase">
+                <TestCases row="4" column="1" type="Multiple" totalRowCount="Auto" totalColumnCount="14" modelRowCount="1" modelColumnCount="14" key="Index">
+                    <Index row="1" column="1" type="String"/>
+                    <ID row="1" column="2" type="String"/>
+                    <Title row="1" column="3" type="String"/>
+                    <PreCnd row="1" column="4" type="String"/>
+                    <PostCnd row="1" column="5" type="String"/>
+                    <Procedure row="1" column="6" type="String"/>
+                    <ExpectedResult row="1" column="7" type="String"/>
+                    <INParam row="1" column="8" type="String"/>
+                    <OUTParam row="1" column="9" type="String"/>
+                    <Tracability row="1" column="10" type="String"/>
+                    <ValidationType row="1" column="11" type="String"/>
+                    <TestMethod row="1" column="12" type="String"/>
+                    <TestType row="1" column="13" type="String"/>
+                    <Designer row="1" column="14" type="String"/>
+                </TestCases>
+            </Sheet_TestCase>
+        </Excel_TestCase>
+    </Struct>
+</Model>
