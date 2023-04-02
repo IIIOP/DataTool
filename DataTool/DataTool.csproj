@@ -194,11 +194,6 @@ xcopy stdole.dll ScriptEditor\DataTool</PostBuildEvent>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefaultConfig\TestCase.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ScriptEditor\.run\Generate.run.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
