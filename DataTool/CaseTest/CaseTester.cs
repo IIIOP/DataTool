@@ -31,9 +31,20 @@ namespace DataTool.CaseTest
         {
             LogHelper.DefaultLog.WriteLine($@"Case Test start.............");
 
-            var testCases = _object.GetType().GetMethods()
+            var allTestCases = _object.GetType().GetMethods()
                 .Where(item => item.GetCustomAttribute<TestCaseAttribute>() != null)
-                .OrderBy(p=>p.GetCustomAttribute<TestCaseAttribute>().id);
+                .OrderBy(p=>p.GetCustomAttribute<TestCaseAttribute>().id).ToList();
+            var testCases = allTestCases;
+
+            if (testCases.Any(p=>p.GetCustomAttribute<TestCaseAttribute>().condition=="yes"))
+            {
+                testCases = testCases.Where(p => p.GetCustomAttribute<TestCaseAttribute>().condition == "yes").ToList();
+            }
+            else
+            {
+                testCases = testCases.Where(p => p.GetCustomAttribute<TestCaseAttribute>().condition != "no").ToList();
+            }
+            
             foreach (var testCase in testCases)
             {
                 if (testCase.GetCustomAttribute<TestCaseAttribute>() is TestCaseAttribute testCaseAttribute)
@@ -54,6 +65,11 @@ namespace DataTool.CaseTest
             foreach (var result in _resultList)
             {
                 LogHelper.DefaultLog.WriteLine($"ID[{result.id}]=>[{(result.Result?"Pass":"Fail")}]");
+            }
+
+            foreach (var noTestCase in allTestCases.Except(testCases).Select(p=>p.GetCustomAttribute<TestCaseAttribute>()))
+            {
+                LogHelper.DefaultLog.WriteLine($"ID[{noTestCase.id}]=>[noTest]");
             }
         }
 

@@ -10,6 +10,7 @@ namespace DataToolInterface.Format.Script
         public string id { get; set; }
         public string author { get; set; }
         public string describe { get; set; }
+        public string condition { get; set; }
 
         public bool Result;
     }
